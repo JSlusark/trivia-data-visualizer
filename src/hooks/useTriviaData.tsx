@@ -9,7 +9,7 @@ TODO:
 - 50 is the num of maximum questions per API call, so  could handle a case where i load more
 - loading smaller data would be useful when amount in a very high number (1000+)
 */
-export const loadTriviaData = (amount: number) => {
+export const useTriviaData = (amount: number) => {
     const [data, setData] = useState<TriviaQuestion[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -21,7 +21,7 @@ export const loadTriviaData = (amount: number) => {
                 .then((res) => {
                     // console.log(res);
                     // console.log(res.data.results);
-                    const decoded = res.data.results.map((q: any) => ({
+                    const decoded = res.data.results.map((q: TriviaQuestion) => ({
                         ...q,
                         category: decodeURIComponent(q.category),
                         question: decodeURIComponent(q.question),
@@ -36,11 +36,12 @@ export const loadTriviaData = (amount: number) => {
                 })
                 .catch((err) => {
                     setError(err.message);
+                    setIsLoading(false);
                 });
         }, 5000);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [amount]);
 
     return { data, isLoading, error };
 };

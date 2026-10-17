@@ -1,4 +1,4 @@
-import { loadTriviaData } from "../hooks/loadTriviaData";
+import { useTriviaData } from "../hooks/useTriviaData";
 import LoadingSpinner from "./loading/LoadingSpinner";
 import ErrorMessage from "./loading/ErrorMessage";
 import EmptyState from "./loading/EmptyState";
@@ -8,7 +8,7 @@ import { OPTION } from "../constants/constants";
 import { useState } from "react";
 
 export default function DataContainer() {
-  const { data, isLoading, error } = loadTriviaData(50);
+  const { data, isLoading, error } = useTriviaData(50);
   const [activeFilter, setActiveFilter] = useState(OPTION.category);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 

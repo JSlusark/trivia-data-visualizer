@@ -40,9 +40,9 @@ function CategorySelect({
                                 <button
                                     className="w-full text-left px-3 py-2 text-sm text-base-content/80 hover:bg-primary/10 hover:text-primary active:bg-primary active:text-primary-content rounded-md transition-colors duration-300"
                                     onClick={() => {
-                                        item === "All categories"
-                                            ? setSelectedCategory(null)
-                                            : setSelectedCategory(item);
+                                        setSelectedCategory(
+                                            item === "All categories" ? null : item
+                                        );
                                     }}
                                 >
                                     {item}
